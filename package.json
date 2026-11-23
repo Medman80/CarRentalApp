@@ -1,0 +1,107 @@
+{
+  "name": "car_pod",
+  "version": "1.0.0",
+  "description": "Professional Car Rental Management System for Small Agencies",
+  "main": "main.js",
+  "homepage": "./",
+  "private": true,
+  "author": "edditore.com",
+  "license": "edditore inc",
+  "scripts": {
+    "react-start": "cross-env BROWSER=none react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "electron-start": "wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .",
+    "electron-dev": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && cross-env NODE_ENV=development electron .\"",
+    "electron-build": "npm run react-build && cross-env NODE_ENV=production electron-builder",
+    "build": "npm run react-build && npm run electron-build",
+    "build-win": "npm run react-build && cross-env NODE_ENV=production electron-builder --win",
+    "start": "npm run electron-dev"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cors": "^2.8.6",
+    "crypto": "^1.0.1",
+    "date-fns": "^2.30.0",
+    "electron-is-dev": "^2.0.0",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "qrcode": "^1.5.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "react-scripts": "5.0.1",
+    "wait-on": "^7.0.1"
+  },
+  "build": {
+    "extends": null,
+    "appId": "com.carrentalapp.system",
+    "productName": "Cars Pod",
+    "copyright": "Copyright © 2024 edditore.com",
+    "files": [
+      "build/**/*",
+      "main.js",
+      "src/**/*",
+      "assets/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "publisherName": "edditore.com",
+      "requestedExecutionLevel": "asInvoker",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "certificateFile": null,
+      "certificatePassword": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Cars Pod",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "menuCategory": false,
+      "include": null
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-portable-${arch}.${ext}"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
